@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="container">
         <h1 className="title">
-          Hello world
+          TODO REACT
           <span aria-label="emoji" role="img">🔥</span>
         </h1>
         <input type="text" className="new-task" />
