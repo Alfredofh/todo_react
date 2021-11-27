@@ -1,5 +1,5 @@
-import { render } from '@testing-library/react';
 import './App.css';
+import React, { Component } from 'react';
 
 class App extends Component {
   constructor(props) {
@@ -8,6 +8,13 @@ class App extends Component {
       newTask: "",
     }
   }
+
+  handleTaskChange = (event) => {
+    this.setState({
+      newTask: event.target.value,
+    })
+  }
+
   render() {
     return (
       <div className="container">
@@ -15,7 +22,8 @@ class App extends Component {
           TODO REACT
           <span aria-label="emoji" role="img">🔥</span>
         </h1>
-        <input type="text" className="new-task" />
+        <input onChange={this.handleTaskChange} type="text" className="new-task" />
+        <h2 className="test-label">{this.state.newTask}</h2>
       </div>
     );
   }
