@@ -6,12 +6,23 @@ class App extends Component {
     super(props)
     this.state = {
       newTask: "",
-    }
+      tasks: []
+    };
   }
 
   handleTaskChange = (event) => {
     this.setState({
       newTask: event.target.value,
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    let newTasks = this.state.tasks;
+    newTasks.push(this.state.newTask)
+    this.setState({
+      newTask: "",
+      tasks: newTasks
     })
   }
 
@@ -22,8 +33,17 @@ class App extends Component {
           TODO REACT
           <span aria-label="emoji" role="img">🔥</span>
         </h1>
-        <input onChange={this.handleTaskChange} type="text" className="new-task" />
-        <h2 className="test-label">{this.state.newTask}</h2>
+        <form onSubmit={this.handleSubmit}>
+          <input value={this.state.newTask} onChange={this.handleTaskChange} type="text" className="new-task" />
+          <h2 className="test-label">{this.state.newTask}</h2>
+        </form>
+        {
+          this.state.tasks.map(task =>
+            <div className="task-container">
+              <h3 className="task">{task}</h3>
+            </div>
+          )
+        }
       </div>
     );
   }
