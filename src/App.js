@@ -1,6 +1,7 @@
 import './App.css';
 import React, { Component } from 'react';
-
+import Task from './components/Task';
+import Title from './components/Title';
 class App extends Component {
   constructor(props) {
     super(props)
@@ -29,19 +30,14 @@ class App extends Component {
   render() {
     return (
       <div className="container">
-        <h1 className="title">
-          TODO REACT
-          <span aria-label="emoji" role="img">🔥</span>
-        </h1>
+        <Title />
+
         <form onSubmit={this.handleSubmit}>
           <input value={this.state.newTask} onChange={this.handleTaskChange} type="text" className="new-task" />
-          <h2 className="test-label">{this.state.newTask}</h2>
         </form>
         {
           this.state.tasks.map(task =>
-            <div className="task-container">
-              <h3 className="task">{task}</h3>
-            </div>
+            <Task />
           )
         }
       </div>
